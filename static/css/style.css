@@ -25,7 +25,7 @@ body{
     color: #ffd700; /* gold color for "Flashcard App" */
     font-weight: bold;
 }
-.start_btn {
+.btn_common {
     background: #0073A8;
     color: white;
     border: none;
@@ -34,6 +34,8 @@ body{
     padding: 10px 20px;
     margin: 0 auto;
 }
-.start_btn:hover {
+.btn_common:hover {
     background: #004f61;
 }
+
+/* style of create_module */
