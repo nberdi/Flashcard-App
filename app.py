@@ -35,7 +35,7 @@ with app.app_context():
 def welcome_page():
     return render_template('welcome_page.html')
 
-@app.route('/create_module', methods=['POST', 'GET'])
+@app.route('/create_module', methods=['POST'])
 def create_module():
     if request.method == 'POST':
         module_name = request.form['module_name']
@@ -50,14 +50,33 @@ def create_module():
             return "There was an issue adding your question"
     else:
         return render_template('create_module.html')
-    
 
 @app.route('/flashcard_module/<string:name>/<int:id>')
 def flashcard_module(name, id):
     module = Module.query.filter_by(id=id, name=name).first_or_404()
     if module is None:
         return "Module not found", 404  
-    return render_template('flashcard_module.html', module=module)
+    flashcards = FlashcardApp.query.filter_by(module_id=module.id).all()    # to display flashcards
+    return render_template('flashcard_module.html', module=module, flashcards=flashcards)
+
+@app.route('/add_flashcards/<int:module_id>', methods=['POST'])
+def add_flashcards(module_id):
+    # fetch a record based on its primary key.
+    module = Module.query.get_or_404(module_id)
+    if request.method == 'POST':
+        question = request.form['question']
+        answer = request.form['answer']
+        new_flashcard = FlashcardApp(question=question, answer=answer, module_id=module.id)
+        
+        try:
+            db.session.add(new_flashcard)
+            db.session.commit()
+            return redirect(url_for('flashcard_module', name=module.name, id=module.id))
+        except Exception as e:
+            return "There was an issue adding your question"
+    else:
+        return render_template('flashcard_module.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
