@@ -5,6 +5,23 @@ body{
     color: white;
 }
 
+.container {
+    text-align: center;
+}
+
+.header{
+    padding: 4rem;
+}
+
+form {
+    background-image: radial-gradient(#ffffff33 1px, #00091d 1px);
+    border: 0.0625rem solid white;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    height: 20rem;
+}
+
 /* style of welcome page */
 .welcome_page_container {
     display: flex;
@@ -39,3 +56,20 @@ body{
 }
 
 /* style of create_module */
+.card_label {
+    font-weight: bold;
+    color: #FFEB3B;
+    margin-bottom: 0.5rem; 
+    display: block;
+    text-align: left;
+    text-transform: uppercase;
+}
+.card_input {
+    width: 100%;
+    color: white; /* input color */
+    padding: 10px 0; /* vertical padding for a more "underline" feel */
+    margin-bottom: 3rem; /* distance between input and btn */
+    border: none; /* remove border */
+    border-bottom: 2px solid #FFEB3B; /* yellow underline */
+    background-color: transparent; /* transparent background */
+}
