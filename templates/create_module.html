@@ -6,14 +6,18 @@
 
 {% block body %}
     <div class="container">
+        <h1 class="header">Create Your Module!</h1>
+
         <form action="/create_module" method="POST">
             <div class="container text-center">
                 <div class="row align-items-start">
                     <div class="col-md-6">
-                        <input type="text" name="module_name" placeholder="Module Name" required>
+                        <label for="module_name" class="card_label">Create Module</label>
+                        <input type="text" class="card_input" id="module_name" name="module_name" placeholder="Module Name" required>
                     </div>
                     <div class="col-md-6">
-                        <input type="text" name="module_description" placeholder="Module Description" required>
+                        <label for="module_description" class="card_label">Describe Module</label>
+                        <input type="text" class="card_input" id="module_description" name="module_description" placeholder="Module Description">
                     </div>
                 </div>
                 <button type="submit" class="btn_common">Create Module</button>
