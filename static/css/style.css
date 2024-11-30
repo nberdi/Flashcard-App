@@ -1,0 +1,39 @@
+body{
+    background-color: #000000;
+    background-image: radial-gradient(#ffffff33 1px, #00091d 1px);
+    background-size: 20px 20px;
+    color: white;
+}
+
+/* style of welcome page */
+.welcome_page_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.welcome_page_heading {
+    font-size: 3em;
+    margin-bottom: 1.25rem;
+}
+.welcome_page_text {
+    font-size: 1.5em;
+    margin-bottom: 1.875rem;
+}
+.welcome_page_highlight {
+    color: #ffd700; /* gold color for "Flashcard App" */
+    font-weight: bold;
+}
+.start_btn {
+    background: #0073A8;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1.2em;
+    padding: 10px 20px;
+    margin: 0 auto;
+}
+.start_btn:hover {
+    background: #004f61;
+}
