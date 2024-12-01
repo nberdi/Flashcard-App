@@ -35,7 +35,7 @@ with app.app_context():
 def welcome_page():
     return render_template('welcome_page.html')
 
-@app.route('/create_module', methods=['POST'])
+@app.route('/create_module', methods=['POST', 'GET'])
 def create_module():
     if request.method == 'POST':
         module_name = request.form['module_name']
@@ -47,7 +47,7 @@ def create_module():
             db.session.commit()
             return redirect(url_for('flashcard_module', name=new_module.name, id=new_module.id))
         except:
-            return "There was an issue adding your question"
+            return "There was an issue adding your module"
     else:
         return render_template('create_module.html')
 
@@ -76,6 +76,32 @@ def add_flashcards(module_id):
             return "There was an issue adding your question"
     else:
         return render_template('flashcard_module.html')
+    
+@app.route('/delete/<int:id>', methods=['GET'])
+def delete(id):
+    flashcard_to_delete = FlashcardApp.query.get_or_404(id)
+    module = Module.query.get_or_404(flashcard_to_delete.module_id)
+    try:
+        db.session.delete(flashcard_to_delete)
+        db.session.commit()
+        return redirect(url_for('flashcard_module', name=module.name, id=module.id))
+    except:
+        return "There was an issue deleting your flashcard"
+    
+@app.route('/edit_flashcard/<int:id>', methods=['GET', 'POST'])
+def edit_flashcard(id):
+    card = FlashcardApp.query.get_or_404(id)
+    module = Module.query.get_or_404(card.module_id)
+    if request.method == 'POST':
+        card.question = request.form['question']
+        card.answer = request.form['answer']
+        try:
+            db.session.commit()
+            return redirect(url_for('flashcard_module', name=module.name, id=module.id))
+        except:
+            return "There was an issue updating your flashcard"
+    else:
+        return render_template('edit_flashcard.html', card=card)
 
 
 if __name__ == '__main__':
