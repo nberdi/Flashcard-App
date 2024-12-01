@@ -108,5 +108,31 @@ def my_modules():
     modules = Module.query.all() 
     return render_template('my_modules.html', modules=modules)
 
+@app.route('/delete_module/<int:id>',  methods=['GET', 'POST'])
+def delete_module(id):
+    module_to_delete = Module.query.get_or_404(id)
+    try:
+        db.session.delete(module_to_delete)
+        db.session.commit()
+        return redirect('/my_modules')
+    except:
+        return "There was an issue deleting your module"
+    
+@app.route('/edit_module/<int:id>', methods=['GET', 'POST'])
+def edit_module(id):
+    pass
+    module_to_edit = Module.query.get_or_404(id)
+    if request.method == 'POST':
+        module_to_edit.name = request.form['module_name'].replace(' ', '-').lower()
+        module_to_edit.description = request.form['module_description'] 
+        try:
+            db.session.commit()
+            return redirect('/my_modules')
+        except Exception as e:
+            return f"There was an issue updating the module: {e}"
+    else:
+        return render_template('edit_module.html', module=module_to_edit)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
