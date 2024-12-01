@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Edit Flashcard</title>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="header">Edit Flashcard</h1>
+
+        <form action="/edit_flashcard/{{card.id}}" method="POST">
+            <div class="container text-center">
+                <div class="row align-items-start">
+                    <div class="col-md-6">
+                        <input type="text" class="card_input" name="question" value="{{card.question}}" required>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class="card_input" name="answer" value="{{card.answer}}" required>
+                    </div>
+                    <button type="submit" class="btn_common">Update</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
