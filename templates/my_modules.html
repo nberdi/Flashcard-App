@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Flashcard App</title>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <nav>
+            <div class="dropdown">
+                <button class="btn btn-success" data-bs-toggle="dropdown" aria-expanded="false">Settings</button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="/">Home Page</a></li>
+                    <li><a class="dropdown-item" href="/my_modules">My modules</a></li>
+                    <li><a class="dropdown-item" href="/create_module">Create a module</a></li>
+                </ul> 
+            </div>
+        </nav>
+        <h1 class="header">My Modules</h1>
+
+        {% if modules %}
+            {% for module in modules %}
+                <div class="container">
+                    <div class="row">
+                        <div class="col-4">
+                            <a href="{{ url_for('flashcard_module', name=module.name, id=module.id) }}">{{ module.name.replace("-", " ") }}</a>
+                        </div>
+                        <div class="col-6">
+                            <p>{{ module.description }}</p>
+                        </div>
+                        <div class="col">
+                            <div class="dropdown">
+                                <button class="btn btn-success" data-bs-toggle="dropdown" aria-expanded="false">Settings</button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="">Delete</a></li>
+                                    <li><a class="dropdown-item" href="">Edit</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div>
+                <p>You currently have <span class="no_flashcard_highlight">no modules</span>.</p>
+                <a href="/create_module"><button type="submit" class="btn_common">Create a Module</button></a>
+            </div>
+        {% endif %}
+    
+    </div>
+{% endblock %}
