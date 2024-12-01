@@ -32,8 +32,12 @@
                             <div class="dropdown">
                                 <button class="btn btn-success" data-bs-toggle="dropdown" aria-expanded="false">Settings</button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="">Delete</a></li>
-                                    <li><a class="dropdown-item" href="">Edit</a></li>
+                                    <li>
+                                        <form action="/delete_module/{{ module.id }}" method="POST" style="display:inline;">
+                                            <button type="submit" class="btn btn-danger dropdown-item">Delete Module</button>
+                                        </form>
+                                    </li>
+                                    <li><a class="dropdown-item" href="/edit_module/{{ module.id }}">Edit</a></li>
                                 </ul>
                             </div>
                         </div>
