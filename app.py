@@ -103,6 +103,10 @@ def edit_flashcard(id):
     else:
         return render_template('edit_flashcard.html', card=card)
 
+@app.route('/my_modules')
+def my_modules():
+    modules = Module.query.all() 
+    return render_template('my_modules.html', modules=modules)
 
 if __name__ == '__main__':
     app.run(debug=True)
