@@ -6,6 +6,17 @@
 
 {% block body %}
     <div class="container">
+        <nav>
+            <div class="dropdown">
+                <button class="btn btn-success" data-bs-toggle="dropdown" aria-expanded="false">Settings</button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="/">Home Page</a></li>
+                    <li><a class="dropdown-item" href="/my_modules">My modules</a></li>
+                    <li><a class="dropdown-item" href="/create_module">Create a module</a></li>
+                </ul>
+            </div>
+        </nav>
+
         <h1 class="header">Create Your Module!</h1>
 
         <form action="/create_module" method="POST">
