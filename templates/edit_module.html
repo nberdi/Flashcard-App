@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Flashcard App</title>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="header">Edit Module</h1>
+
+        <form action="/edit_module/{{ module.id }}" method="POST">
+            <div class="container text-center">
+                <div class="row align-items-start">
+                    <div class="col-md-6">
+                        <input type="text" class="card_input" name="module_name" value="{{ module.name.replace("-", " ") }}" required placeholder="Module Name">
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class="card_input" name="module_description" value="{{module.description}}" placeholder="Module Description">
+                    </div>
+                    <button type="submit" class="btn_common">Update</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+{% endblock %}
