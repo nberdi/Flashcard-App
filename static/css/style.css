@@ -4,15 +4,12 @@ body{
     background-size: 20px 20px;
     color: white;
 }
-
 .container {
     text-align: center;
 }
-
 .header{
     padding: 4rem;
 }
-
 form {
     background-image: radial-gradient(#ffffff33 1px, #00091d 1px);
     border: 0.0625rem solid white;
@@ -42,6 +39,8 @@ form {
     color: #ffd700; /* gold color for "Flashcard App" */
     font-weight: bold;
 }
+
+/* style of all btns */
 .btn_common {
     background: #0073A8;
     color: white;
@@ -55,7 +54,7 @@ form {
     background: #004f61;
 }
 
-/* style of create_module */
+/* style of card label and input */
 .card_label {
     font-weight: bold;
     color: #FFEB3B;
@@ -66,10 +65,57 @@ form {
 }
 .card_input {
     width: 100%;
-    color: white; /* input color */
-    padding: 10px 0; /* vertical padding for a more "underline" feel */
+    color: white;
+    padding: 10px 0;
     margin-bottom: 3rem; /* distance between input and btn */
-    border: none; /* remove border */
+    border: none;
     border-bottom: 2px solid #FFEB3B; /* yellow underline */
-    background-color: transparent; /* transparent background */
+    background-color: transparent;
+}
+
+/* style of flashcards */
+.card_container {
+    perspective: 1000px; /* creates a 3D perspective for the card flip */
+    display: flex;
+    justify-content: center;
+    margin-top: 20vh;
+    margin-bottom: 2rem;
+}
+/* style for the individual card */
+.card {
+    width: 600px;
+    height: 300px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s; /* flip speed */
+}
+/* style for flipped cards */
+.card.flipped {
+    transform: rotateY(180deg); /* rotate the card 180 degrees to show the back */
+}
+/* style for each side of the card */
+.card_side {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    border: 1px solid #ccc;
+}
+/* front side of the card */
+.card-front {
+    background-image: radial-gradient(#ffffff33 1px, #00091d 1px);
+    color: white;
+}
+/* back side of the card */
+.card-back {
+    background-image: radial-gradient(#ffffff33 1px, #00091d 1px);
+    color: #FFEB3B;
+    transform: rotateY(180deg);
+}
+.no_flashcard_highlight {
+    color: #ff6347;
 }
