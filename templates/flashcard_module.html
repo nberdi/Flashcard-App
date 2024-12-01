@@ -8,6 +8,60 @@
 
     <div class="container">
         <h1 class="header">{{ module.name.replace("-", " ") }}</h1>
-    </div>
 
+        <form action="/add_flashcards/{{ module.id }}" method="POST">
+            <div class="container">
+                <div class="row align-items-start">
+                    <div class="col-md-6">
+                        <label for="question" class="card_label">Question</label>
+                        <input type="text" class="card_input" id="question" name="question" placeholder="Enter your question" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="answer" class="card_label">Answer</label>
+                        <input type="text" class="card_input" id="answer" name="answer" placeholder="Enter your answer" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn_common">Add Card</button>
+            </div>
+        </form>
+
+        {% if flashcards %}
+        <div id="carouselExampleAutoplaying" class="carousel slide">
+            <div class="carousel-inner">
+                {% for card in flashcards %}
+                    <div class="carousel-item {% if loop.first %} active {% endif %}">
+                        <div class="card_container">
+                            <div class="card" id="flashcard-{{ card.id }}">
+                                <div class="card_side card-front" id="card_front">
+                                    {{ card.question }}
+                                </div>
+                                <div class="card_side card-back">
+                                    {{ card.answer }}
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="" class="btn btn-danger btn-sm">Delete</a>
+                            <a href="" class="btn btn-primary btn-sm">Edit</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+    
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        {% else %}
+            <div>
+                <p>You currently have <span class="no_flashcard_highlight">no flashcards</span>. Start adding some to begin.</p>
+            </div>
+        {% endif %}
+    </div>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 {% endblock %}
