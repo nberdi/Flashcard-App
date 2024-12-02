@@ -7,6 +7,12 @@ body{
 .container {
     text-align: center;
 }
+
+nav {
+    margin-top: 2rem;
+    text-align: left;
+}
+
 .header{
     padding: 4rem;
 }
