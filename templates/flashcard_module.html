@@ -37,7 +37,7 @@
         </form>
 
         {% if flashcards %}
-        <div id="carouselExampleAutoplaying" class="carousel slide">
+        <div id="carouselExampleAutoplaying" class="main_flashcard_container carousel slide">
             <div class="carousel-inner">
                 {% for card in flashcards %}
                     <div class="carousel-item {% if loop.first %} active {% endif %}">
@@ -52,8 +52,8 @@
                             </div>
                         </div>
                         <div>
-                            <a href="/delete/{{ card.id }}" class="btn btn-danger btn-sm">Delete</a>
-                            <a href="/edit_flashcard/{{ card.id }}" class="btn btn-primary btn-sm">Edit</a>
+                            <a href="/delete/{{ card.id }}" class="btn btn-danger btn-sm flashcard_settings">Delete</a>
+                            <a href="/edit_flashcard/{{ card.id }}" class="btn btn-primary btn-sm flashcard_settings">Edit</a>
                         </div>
                     </div>
                 {% endfor %}
