@@ -1,3 +1,4 @@
+/* general style */
 body{
     background-color: #000000;
     background-image: radial-gradient(#ffffff33 1px, #00091d 1px);
@@ -7,12 +8,10 @@ body{
 .container {
     text-align: center;
 }
-
 nav {
     margin-top: 2rem;
     text-align: left;
 }
-
 .header{
     padding: 4rem;
 }
@@ -23,6 +22,40 @@ form {
     display: flex;
     align-items: center;
     height: 20rem;
+}
+/* style of all btns */
+.btn_common {
+    background: #0073A8;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1.2em;
+    padding: 10px 20px;
+    margin: 0 auto;
+}
+.btn_common:hover {
+    background: #004f61;
+}
+/* style of card label and input */
+.card_label {
+    font-weight: bold;
+    color: #FFEB3B;
+    margin-bottom: 0.5rem; 
+    display: block;
+    text-align: left;
+    text-transform: uppercase;
+}
+.card_input {
+    width: 100%;
+    color: white;
+    padding: 10px 0;
+    margin-bottom: 3rem; /* distance between input and btn */
+    border: none;
+    border-bottom: 2px solid #FFEB3B; /* yellow underline */
+    background-color: transparent;
+}
+.highlight {
+    color: #ff6347;
 }
 
 /* style of welcome page */
@@ -46,40 +79,7 @@ form {
     font-weight: bold;
 }
 
-/* style of all btns */
-.btn_common {
-    background: #0073A8;
-    color: white;
-    border: none;
-    border-radius: 0.5rem;
-    font-size: 1.2em;
-    padding: 10px 20px;
-    margin: 0 auto;
-}
-.btn_common:hover {
-    background: #004f61;
-}
-
-/* style of card label and input */
-.card_label {
-    font-weight: bold;
-    color: #FFEB3B;
-    margin-bottom: 0.5rem; 
-    display: block;
-    text-align: left;
-    text-transform: uppercase;
-}
-.card_input {
-    width: 100%;
-    color: white;
-    padding: 10px 0;
-    margin-bottom: 3rem; /* distance between input and btn */
-    border: none;
-    border-bottom: 2px solid #FFEB3B; /* yellow underline */
-    background-color: transparent;
-}
-
-/* style of flashcards */
+/* style of flashcards_module page */
 .card_container {
     perspective: 1000px; /* creates a 3D perspective for the card flip */
     display: flex;
@@ -122,6 +122,35 @@ form {
     color: #FFEB3B;
     transform: rotateY(180deg);
 }
-.no_flashcard_highlight {
-    color: #ff6347;
+/* style of no flashcards text */
+.no_flashcards_message {
+    margin-top: 10%;
+    font-size: 1.5em;
+}
+.no_flashcards_message p {
+    font-size: 1.2em;
+    color: white;
+    padding-bottom: 10%;
+}
+
+/* style of my modules page */
+.module_container {
+    min-height: 4rem; 
+    background-image: radial-gradient(#ffffff33 1px, #00091d 1px); 
+    border: 1px solid white; 
+    margin-bottom: 3rem;
+}
+.column_container {
+    font-size: 1rem;
+    min-height: 4rem; 
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+.no_modules_container {
+    margin-top: 5%;
+}
+.no_modules_container p {
+    color: white;
+    font-size: 2.5em;
 }
