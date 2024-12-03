@@ -26,7 +26,7 @@
                             <a href="{{ url_for('flashcard_module', name=module.name, id=module.id) }}">{{ module.name.replace("-", " ") }}</a>
                         </div>
                         <div class="col-6 column_container">
-                            <p>{{ module.description }}</p>
+                            <p class="flashcard_description">{{ module.description }}</p>
                         </div>
                         <div class="col column_container">
                             <div class="dropdown">

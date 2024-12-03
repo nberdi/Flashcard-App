@@ -165,3 +165,6 @@ form {
     color: white;
     font-size: 2.5em;
 }
+.flashcard_description {
+    margin: 0;
+}
