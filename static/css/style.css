@@ -80,6 +80,14 @@ form {
 }
 
 /* style of flashcards_module page */
+.main_flashcard_container {
+    padding-bottom: 5%;
+}
+@media (max-width: 1024px) {
+    .main_flashcard_container {
+        padding-bottom: 20%;
+    }
+}
 .card_container {
     perspective: 1000px; /* creates a 3D perspective for the card flip */
     display: flex;
@@ -121,6 +129,9 @@ form {
     background-image: radial-gradient(#ffffff33 1px, #00091d 1px);
     color: #FFEB3B;
     transform: rotateY(180deg);
+}
+.flashcard_settings {
+    margin: 0rem 2rem;
 }
 /* style of no flashcards text */
 .no_flashcards_message {
