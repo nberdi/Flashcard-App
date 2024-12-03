@@ -20,15 +20,15 @@
 
         {% if modules %}
             {% for module in modules %}
-                <div class="container">
+                <div class="container module_container">
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-4 column_container">
                             <a href="{{ url_for('flashcard_module', name=module.name, id=module.id) }}">{{ module.name.replace("-", " ") }}</a>
                         </div>
-                        <div class="col-6">
+                        <div class="col-6 column_container">
                             <p>{{ module.description }}</p>
                         </div>
-                        <div class="col">
+                        <div class="col column_container">
                             <div class="dropdown">
                                 <button class="btn btn-success" data-bs-toggle="dropdown" aria-expanded="false">Settings</button>
                                 <ul class="dropdown-menu">
@@ -45,8 +45,8 @@
                 </div>
             {% endfor %}
         {% else %}
-            <div>
-                <p>You currently have <span class="no_flashcard_highlight">no modules</span>.</p>
+            <div class="no_modules_container">
+                <p>You currently have <span class="highlight">no modules</span>.</p>
                 <a href="/create_module"><button type="submit" class="btn_common">Create a Module</button></a>
             </div>
         {% endif %}
