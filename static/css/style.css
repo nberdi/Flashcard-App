@@ -15,7 +15,7 @@ nav {
 .header{
     padding: 4rem;
 }
-form {
+.form {
     background-image: radial-gradient(#ffffff33 1px, #00091d 1px);
     border: 0.0625rem solid white;
     border-radius: 8px;
@@ -146,14 +146,14 @@ form {
 
 /* style of my modules page */
 .module_container {
-    min-height: 4rem; 
+    width: 90%;
     background-image: radial-gradient(#ffffff33 1px, #00091d 1px); 
     border: 1px solid white; 
     margin-bottom: 3rem;
 }
 .column_container {
+    height: 10rem;
     font-size: 1rem;
-    min-height: 4rem; 
     display: flex;
     align-items: center;
     text-align: left;
@@ -166,5 +166,27 @@ form {
     font-size: 2.5em;
 }
 .flashcard_description {
+    font-size: 1.2rem;
     margin: 0;
+    max-height: 10rem;
+    overflow-y: auto;
+}
+.module_delete_btn {
+    background-color: transparent; 
+    border: none; 
+    margin-left: 1rem; 
+    margin-top: 0.2rem;
+}
+.setting_img {
+    width: 1.5rem;
+}
+@media (max-width: 726px) {
+    .module_container {
+        width: 100%;
+    }
+    .module_delete_btn { 
+        margin-left: -0.5rem; 
+        margin-top: 1rem; 
+        text-align: center;
+    }
 }
