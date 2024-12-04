@@ -22,24 +22,21 @@
             {% for module in modules %}
                 <div class="container module_container">
                     <div class="row">
-                        <div class="col-4 column_container">
-                            <a href="{{ url_for('flashcard_module', name=module.name, id=module.id) }}">{{ module.name.replace("-", " ") }}</a>
+                        <div class="col-5 column_container">
+                            <a style="font-size: 2rem; margin-left: 1.875rem; text-decoration: none;" href="{{ url_for('flashcard_module', name=module.name, id=module.id) }}">{{ module.name.replace("-", " ") }}</a>
                         </div>
-                        <div class="col-6 column_container">
-                            <p class="flashcard_description">{{ module.description }}</p>
+                        <div class="col-5 column_container">
+                            {% if module.description %}
+                                <p class="flashcard_description">{{ module.description }}</p>
+                            {% else %}
+                                <p style="font-size: 1.5rem;">No description</p>
+                            {% endif %}
                         </div>
-                        <div class="col column_container">
-                            <div class="dropdown">
-                                <button class="btn btn-success" data-bs-toggle="dropdown" aria-expanded="false">Settings</button>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <form action="/delete_module/{{ module.id }}" method="POST" style="display:inline;">
-                                            <button type="submit" class="btn btn-danger dropdown-item">Delete Module</button>
-                                        </form>
-                                    </li>
-                                    <li><a class="dropdown-item" href="/edit_module/{{ module.id }}">Edit</a></li>
-                                </ul>
-                            </div>
+                        <div class="col" style="text-align: right;">
+                            <a href="/edit_module/{{ module.id }}"><img class="setting_img" src="{{ url_for('static', filename='imgs/edit.png') }}" alt="Edit"></a>
+                            <form action="/delete_module/{{ module.id }}" method="POST" style="display:inline;">
+                                <button type="submit" class="module_delete_btn"><img class="setting_img" src="{{ url_for('static', filename='imgs/delete.png') }}" alt="Delete"></button>
+                            </form>
                         </div>
                     </div>
                 </div>
