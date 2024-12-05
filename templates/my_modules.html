@@ -23,11 +23,11 @@
                 <div class="container module_container">
                     <div class="row">
                         <div class="col-5 column_container">
-                            <a style="font-size: 2rem; margin-left: 1.875rem; text-decoration: none;" href="{{ url_for('flashcard_module', name=module.name, id=module.id) }}">{{ module.name.replace("-", " ") }}</a>
+                            <a class="module_name" href="{{ url_for('flashcard_module', name=module.name, id=module.id) }}">{{ module.name.replace("-", " ") }}</a>
                         </div>
                         <div class="col-5 column_container">
                             {% if module.description %}
-                                <p class="flashcard_description">{{ module.description }}</p>
+                                <p class="module_description">{{ module.description }}</p>
                             {% else %}
                                 <p style="font-size: 1.5rem;">No description</p>
                             {% endif %}

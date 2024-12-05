@@ -174,11 +174,19 @@ nav {
     color: white;
     font-size: 2.5em;
 }
-.flashcard_description {
+.module_description {
     font-size: 1.2rem;
     margin: 0;
     max-height: 10rem;
     overflow-y: auto;
+}
+.module_name {
+    font-size: 1.2rem;
+    margin: 0;
+    max-height: 10rem;
+    overflow-y: auto;
+    margin-left: 1.875rem; 
+    text-decoration: none;
 }
 .module_delete_btn {
     background-color: transparent; 
