@@ -118,6 +118,8 @@ nav {
     justify-content: center;
     font-size: 18px;
     border: 1px solid #ccc;
+    overflow: hidden; /* Ensure the container doesn't block scroll */
+    padding: 1rem;
 }
 /* front side of the card */
 .card-front {
@@ -129,6 +131,13 @@ nav {
     background-image: radial-gradient(#ffffff33 1px, #00091d 1px);
     color: #FFEB3B;
     transform: rotateY(180deg);
+}
+.card:not(.flipped) .card-back {
+    pointer-events: none; /* Disable interaction with the back side when not flipped */
+}
+.text_style {
+    max-height: 100%;
+    overflow-y: auto;
 }
 .flashcard_settings {
     margin: 0rem 2rem;
