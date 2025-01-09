@@ -58,27 +58,6 @@ nav {
     color: #ff6347;
 }
 
-/* style of welcome page */
-.welcome_page_container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-}
-.welcome_page_heading {
-    font-size: 3em;
-    margin-bottom: 1.25rem;
-}
-.welcome_page_text {
-    font-size: 1.5em;
-    margin-bottom: 1.875rem;
-}
-.welcome_page_highlight {
-    color: #ffd700; /* gold color for "Flashcard App" */
-    font-weight: bold;
-}
-
 /* style of flashcards_module page */
 .main_flashcard_container {
     padding-bottom: 5%;
@@ -206,4 +185,102 @@ nav {
         margin-top: 1rem; 
         text-align: center;
     }
+}
+
+/* style of authentications page (welcome html and register html) */
+.welcome_section {
+    text-align: left;
+    padding: 2rem;
+}
+.welcome_heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+.welcome_highlight {
+    color: #4299e1;
+}
+.welcome_text {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;   /* space between words */
+}
+
+.authentication_container {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 3.5rem auto;
+}
+
+.form_header {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #2d3748;
+}
+.form_text {
+    color: #718096;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.register_link_container {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.register_link {
+    color: #4299e1;
+    text-decoration: none;
+}
+.register_link:hover {
+    text-decoration: underline;
+}
+
+.authentication_form {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.form_container {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+.form_label {
+    margin-left: 0.3rem;
+    color: #4a5568;
+}
+.form_input {
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 0.75rem;
+    width: 100%;
+}
+
+.submit_btn {
+    background-color: #4299e1;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.submit_btn:hover {
+    background-color: #3182ce;
+    transform: translateY(-1px);
+}
+
+.login_link {
+    text-align: center;
+    color: #4299e1;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.login_link:hover {
+    text-decoration: underline;
 }
