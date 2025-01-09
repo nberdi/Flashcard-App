@@ -5,9 +5,34 @@
 {% endblock %}
 
 {% block body %}
-    <div class="welcome_page_container">
-        <h1 class="welcome_page_heading">Welcome to Your <span class="welcome_page_highlight">Flashcard App!</span></h1>
-        <p class="welcome_page_text">Enhance your learning experience by creating and reviewing flashcards.</p>
-        <a href="create_module"><button type="submit" class="btn_common">Click to Start</button></a>
+    <div class="container" style="padding: 20px;">
+        <div class="row align-items-center">
+            <div class="col-md-6 welcome_section">
+                <h1 class="welcome_heading">Welcome to Your <span class="welcome_highlight">Flashcard App!</span></h1>
+                <p class="welcome_text">Enhance your learning experience by creating and reviewing flashcards. Our intuitive platform helps you master any subject through effective spaced repetition.</p>
+            </div>
+            <div class="col-md-6">
+                <div class="authentication_container">
+                    <h2 class="form_header">Login to Your Account</h2>
+                    <p class="form_text">Access your personalized flashcard collections and continue your learning journey.</p>
+                    <div class="register_link_container">
+                        <a href="" class="register_link">Register here</a>
+                    </div>
+                    <form method="POST" class="authentication_form">
+                        <div class="form_container">
+                            <label for="username" class="form_label">Username</label>
+                            <input type="text" class="form_input" name="username" 
+                                    placeholder="Enter your username" required>
+                        </div>
+                        <div class="form_container">
+                            <label for="password" class="form_label">Password</label>
+                            <input type="password" class="form_input" name="password" 
+                                    placeholder="Enter your password" required>
+                        </div>
+                        <button type="submit" class="submit_btn">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
