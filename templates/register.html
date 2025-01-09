@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Flashcard App</title>
+{% endblock %}
+
+{% block body %}
+    <div class="container" style="padding: 20px;">
+        <div class="row align-items-center">
+            <div class="col-md-6 welcome_section">
+                <h1 class="welcome_heading">Welcome to Your <span class="welcome_highlight">Flashcard App!</span></h1>
+                <p class="welcome_text">Enhance your learning experience by creating and reviewing flashcards. Our intuitive platform helps you master any subject through effective spaced repetition.</p>
+            </div>
+            <div class="col-md-6">
+                <div class="authentication_container">
+                    <h2 class="form_header">Create Your Account</h2>
+                    <form method="POST" class="authentication_form">
+                        <div class="form_container">
+                            <label for="username" class="form_label">Username</label>
+                            <input type="text" class="form_input" name="username" 
+                                    placeholder="Choose a username" required>
+                        </div>
+                        <div class="form_container">
+                            <label for="password" class="form_label">Password</label>
+                            <input type="password" class="form_input" name="password" 
+                                    placeholder="Create a password" required>
+                        </div>
+                        <button type="submit" class="submit_btn">Create Account</button>
+                    </form>
+                    <p class="mt-4" style="color: #6c757d;">
+                        Already have an account? <a href="{{ url_for('welcome_page') }}" class="login_link">Login here</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
