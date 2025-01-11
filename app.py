@@ -1,16 +1,18 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager, UserMixin, login_user, login_required, current_user
+from flask_login import LoginManager, UserMixin, login_user, login_required, current_user, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
 import secrets
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///flashcard_app.db'    # database connection
 app.config['SECRET_KEY'] = secrets.token_hex(16)    # generate a random secret key
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False    # disable track modifications
 db = SQLAlchemy(app)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
+login_manager.login_view = 'welcome_page'   # redirect to welcome page if not logged in
 
 
 class User(UserMixin, db.Model):
@@ -57,6 +59,17 @@ def register():
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
+
+        if len(username) < 5:
+            return redirect(url_for('register'))
+
+        if len(password) < 8:
+            return redirect(url_for('register'))
+
+        # check for existing username
+        if User.query.filter_by(username=username).first():
+            return redirect(url_for('register'))
+
         # create new user
         try:
             user = User(username=username)
@@ -65,6 +78,7 @@ def register():
             db.session.commit()
             return redirect(url_for('welcome_page'))
         except Exception as e:
+            db.session.rollback()   # rollback the session in case of error
             return redirect(url_for('register'))
     return render_template('register.html')
 
@@ -79,6 +93,12 @@ def welcome_page():
             login_user(user)
             return redirect(url_for('my_modules'))        
     return render_template('welcome_page.html')
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('welcome_page'))
 
 with app.app_context():
     db.drop_all()
@@ -127,6 +147,7 @@ def add_flashcards(module_id):
         return render_template('flashcard_module.html')
 
 @app.route('/delete/<int:id>', methods=['GET'])
+@login_required
 def delete(id):
     flashcard_to_delete = FlashcardApp.query.get_or_404(id)
     module = Module.query.get_or_404(flashcard_to_delete.module_id)
@@ -138,6 +159,7 @@ def delete(id):
         return "There was an issue deleting your flashcard"
 
 @app.route('/edit_flashcard/<int:id>', methods=['GET', 'POST'])
+@login_required
 def edit_flashcard(id):
     card = FlashcardApp.query.get_or_404(id)
     module = Module.query.get_or_404(card.module_id)
@@ -159,6 +181,7 @@ def my_modules():
     return render_template('my_modules.html', modules=modules)
 
 @app.route('/delete_module/<int:id>',  methods=['GET', 'POST'])
+@login_required
 def delete_module(id):
     module_to_delete = Module.query.get_or_404(id)
     try:
@@ -169,6 +192,7 @@ def delete_module(id):
         return "There was an issue deleting your module"
 
 @app.route('/edit_module/<int:id>', methods=['GET', 'POST'])
+@login_required
 def edit_module(id):
     pass
     module_to_edit = Module.query.get_or_404(id)
