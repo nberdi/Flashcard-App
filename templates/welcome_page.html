@@ -18,6 +18,13 @@
                     <div class="register_link_container">
                         <a href="{{ url_for('register') }}" class="register_link">Register here</a>
                     </div>
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert">{{ message }}</div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
                     <form method="POST" class="authentication_form">
                         <div class="form_container">
                             <label for="username" class="form_label">Username</label>

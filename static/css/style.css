@@ -205,14 +205,19 @@ nav {
     margin-bottom: 2rem;
     line-height: 1.6;   /* space between words */
 }
-
+.alert {
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    background-color: #fed7d7;
+    color: #c53030;
+    border: 1px solid #feb2b2;
+}
 .authentication_container {
     background: white;
     border-radius: 15px;
     padding: 2rem;
     margin: 3.5rem auto;
 }
-
 .form_header {
     text-align: center;
     margin-bottom: 2rem;
@@ -224,7 +229,6 @@ nav {
     margin-bottom: 1.5rem;
     text-align: center;
 }
-
 .register_link_container {
     text-align: center;
     margin-bottom: 2rem;
@@ -236,13 +240,11 @@ nav {
 .register_link:hover {
     text-decoration: underline;
 }
-
 .authentication_form {
     background: white;
     padding: 2rem;
     border-radius: 10px;
 }
-
 .form_container {
     margin-bottom: 1.5rem;
     text-align: left;
@@ -257,7 +259,6 @@ nav {
     padding: 0.75rem;
     width: 100%;
 }
-
 .submit_btn {
     background-color: #4299e1;
     color: white;
@@ -268,19 +269,16 @@ nav {
     width: 100%;
     margin-top: 1rem;
 }
-
 .submit_btn:hover {
     background-color: #3182ce;
     transform: translateY(-1px);
 }
-
 .login_link {
     text-align: center;
     color: #4299e1;
     text-decoration: none;
     font-weight: 500;
 }
-
 .login_link:hover {
     text-decoration: underline;
 }
