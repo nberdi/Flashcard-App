@@ -1,8 +1,9 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, login_required, current_user, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
 import secrets
+from datetime import timedelta
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///flashcard_app.db'    # database connection
@@ -61,13 +62,16 @@ def register():
         password = request.form.get('password')
 
         if len(username) < 5:
+            flash('Username must be at least 5 characters long')
             return redirect(url_for('register'))
 
         if len(password) < 8:
+            flash('Password must be at least 8 characters long')
             return redirect(url_for('register'))
 
         # check for existing username
         if User.query.filter_by(username=username).first():
+            flash('Username already exists')
             return redirect(url_for('register'))
 
         # create new user
@@ -76,9 +80,11 @@ def register():
             user.set_password(password)
             db.session.add(user)
             db.session.commit()
+            flash('Registration successful! Please log in')
             return redirect(url_for('welcome_page'))
         except Exception as e:
             db.session.rollback()   # rollback the session in case of error
+            flash('Error during registration. Please try again')
             return redirect(url_for('register'))
     return render_template('register.html')
 
@@ -91,14 +97,22 @@ def welcome_page():
         user = User.query.filter_by(username=username).first()
         if user and user.check_password(password):
             login_user(user)
-            return redirect(url_for('my_modules'))        
+            return redirect(url_for('my_modules'))
+        flash('Invalid username or password')        
     return render_template('welcome_page.html')
 
 @app.route('/logout')
 @login_required
 def logout():
     logout_user()
+    flash('You have been logged out')
     return redirect(url_for('welcome_page'))
+
+@app.before_request
+def before_request():
+    if current_user.is_authenticated:
+        session.permanent = True    # make the session permanent
+        app.permanent_session_lifetime = timedelta(minutes=60)   # logout after 60 minutes of inactivity
 
 with app.app_context():
     db.create_all()
