@@ -57,6 +57,9 @@ def load_user(user_id):
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('my_modules'))
+
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
@@ -95,13 +98,19 @@ def register():
 
 @app.route('/', methods=['GET', 'POST'])
 def welcome_page():        
+    if current_user.is_authenticated:
+        return redirect(url_for('my_modules'))
+
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
 
         user = User.query.filter_by(username=username).first()
         if user and user.check_password(password):
+            next_page = request.args.get('next')
             login_user(user)
+            if next_page and next_page.startswith('/'):
+                return redirect(next_page)
             return redirect(url_for('my_modules'))
         flash('Invalid username or password')        
     return render_template('welcome_page.html')
